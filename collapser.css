@@ -1,0 +1,143 @@
+/**
+ * @name Vencord Collapser
+ * @version 2.0.21
+ * @author alexgravitos
+ * @description Compact mobile Discord - probably customizable.
+ * @source https://github.com/gaussandhisgun/vencord-collapser/tree/main
+*/
+
+/*    Vencord Collapser by gravitos (aka gaussandhisgun)    */
+/* Partially based on https://betterdiscord.app/theme/Float */
+/*       i mean half of that thing barely works anyway      */
+
+
+/* Addons */
+@import url(https://maendisease.github.io/BetterDiscordStuff/css/bdAddonMini.css);
+
+/* Warning to Remove Minimum Size */
+@import url(https://maendisease.github.io/BetterDiscordStuff/Themes/Float/addon/RemoveMinimumSize.css) (width: 940px);
+
+/* Source */
+@import url(https://maendisease.github.io/BetterDiscordStuff/Themes/Float/Float.css) (max-width: 940px);
+
+/* If your theme has custom settings icons, delete or comment this line */
+@import url(https://maendisease.github.io/BetterDiscordStuff/Themes/Float/addon/SettingsIcons.css) (max-width: 940px);
+
+:root {
+
+  /* i would rather not touch anything in here, i have no idea what any of this does. - gravitos */
+    /* Guildlist */
+    --guildicon-size: 48;
+    --enable-if-using-favorites-experiment: 0; /* boolean */
+    --guildlist-collapse: 0; /* boolean */
+
+    /* Channel sidebar */
+    --slide-window-on-hover: 1; /* boolean */
+    --float-sidebar-width: 48;
+    --sidebar-hover-width: 240px;
+    --sidebar-hover-delay: 0.2s;
+    --sidebar-transition-duration: 0.4s;
+    --sidebar-window-gap: 8px;
+    --sidebar-border-radius: 8px;
+    --sidebar-usersettings-width: 66px;
+
+    /* Memberlist */
+    --float-members-width: 65px;
+    --members-hover-width: 240px;
+    --members-hover-delay: 1.5s;
+    --members-transition-duration: 0.4s;
+
+    /* Channelheader */
+    --topic-opacity: 1;
+    --toolbar-visibility: flex; /* [flex][none] */
+
+    /* Textarea buttons */ /* [flex][none] */
+    --textarea-buttons-gif: flex;
+    --textarea-buttons-sticker: flex;
+    --textarea-buttons-gift: none;
+
+    /* Theme compatibility */
+    /* --float-guildlist-width-correction: 0px; */
+}
+
+/* The variables are used when the window is at the set sizes, each media query can be edited/deleted */
+@media (max-width:700px) {
+    :root {
+        --topic-opacity: 0;
+        --toolbar-visibility: none;
+        --textarea-buttons-gif: none;
+        --textarea-buttons-sticker: none;
+        --guildicon-size: 36;
+    }
+
+    div[class^="toolbar"] > div[class^="search"] > div > div {
+        width: 20px;
+        overflow: hidden;
+        align-content: right;
+    }
+
+    div[class^="toolbar"]:has(div[class*="focused"][class*="search"]) > div[class*="iconWrapper"] {
+        display: none;
+    }
+    
+    div[class^="toolbar"]:has(div[class*="focused"][class*="search"]) > div[class^="search"] > div > div {
+        width: auto;
+        min-width: 150px;
+    }
+    div[class^="sidebar"] {
+        width: 170px;
+        transition: linear 0.5s;
+    }
+}
+
+@media (max-width:500px) {
+    :root {
+        --guildicon-size: 45;
+        --float-members-width: 0;
+    }
+
+    div[class*="base"] nav[class*=guilds] {
+        width: 0px !important;
+        overflow: visible;
+    }
+
+    div[class*="base"] nav[class*=guilds]:hover, div[class*="base"]:has(div[class*="sidebar"]:hover) nav[class*="guilds"] {
+        width: initial !important;
+        overflow: initial;
+    }
+
+    div[class*="base"] nav[class*=guilds]::before {
+        width: 20px !important;
+        position: absolute;
+        top: calc(50% - 37px);
+        content: "|";
+        color: white;
+        text-shadow: 0 0 5px black;
+        z-index: 9999;
+        font-size: 74px;
+        font-family: "Comic Sans MS", "Comfortaa", "GG Sans", "Arial"
+    }
+    div[class*="base"] nav[class*=guilds]:hover::before, div[class*="base"]:has(div[class*="sidebar"]:hover) nav[class*="guilds"]::before {
+        display: none;
+    }
+
+    div[class^="sidebar"] {
+        width: 0px;
+        transition: linear 0.5s;
+    }
+    div[class*="base"]:has(nav[class*="guilds"]:hover) div[class*="sidebar"], div[class^="base"]:has(div[class*="sidebar"]:hover) div[class*="sidebar"] {
+        display: block;
+        width: inherit;
+        overflow: hidden scroll !important;
+        scrollbar-width: none !important;
+        margin-bottom: 53px;
+    }
+    div[class*="base"]:has(nav[class*="guilds"]:hover) div[class*="chat"], div[class^="base"]:has(div[class*="sidebar"]:hover) div[class*="chat"] {
+        display: none;
+    }
+    div[class*="base"]:has(nav[class*="guilds"]:hover) div[class*="sidebar"] section:last-child, div[class^="base"]:has(div[class*="sidebar"]:hover) div[class*="sidebar"] section:last-child {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    } 
+}
