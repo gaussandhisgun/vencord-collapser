@@ -128,6 +128,7 @@
     div[class*="base"]:has(nav[class*="guilds"]:hover) div[class*="sidebar"], div[class^="base"]:has(div[class*="sidebar"]:hover) div[class*="sidebar"] {
         display: block;
         width: inherit;
+        max-width: 85%;
         overflow: hidden scroll !important;
         scrollbar-width: none !important;
         margin-bottom: 53px;
